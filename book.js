@@ -1,40 +1,29 @@
 
 //error 
-
 document.getElementById('error-message').style.display = 'none'
+
 document.getElementById('total-search').style.display = 'none' ////total search result none display
 
 //button clicked function
 const searchBook = () => {
     const inputField = document.getElementById('search-field');
-    //const errorDiv = document.getElementById('error-message');
-    // console.log(inputField)
+
     const inputFieldText = inputField.value;
 
     // console.log(inputFieldText)
     inputField.value = '';
 
-    document.getElementById('error-message').style.display = 'block'
+    document.getElementById('error-message').style.display = 'block' //error
 
     document.getElementById('total-search').style.display = 'none' //total search result none display
 
+    //data load fetch
     const url = `https://openlibrary.org/search.json?q=${inputFieldText}`;
     fetch(url)
         .then(res => res.json())
         .then(data => displayLoad(data.docs))
-        .catch(error=>displayError(error))
+        .catch(error => displayError(error)) //catch
 
-
-
-
-
-    // document.getElementById('error-message').style.display = 'block'//error handling
-    // fetch api
-    // const url = `https://openlibrary.org/search.json?q=${inputFieldText}`;
-    // fetch(url)
-    //     .then(res => res.json())
-    //     .then(data => displayLoad(data.docs))
-    // .catch(error => displayError(error))
 }
 //error function
 const displayError = error => {
@@ -47,28 +36,21 @@ const displayError = error => {
 const displayLoad = books => {
     console.log(books)
     const searchResult = document.getElementById('search-result');
-    // document.getElementById('error-message').style.display = 'none'
 
-    //document.getElementById('error-message').style.display = 'none'
+    searchResult.textContent = ''; //new data load
 
-    searchResult.textContent = '';
-    let countBooks = 0;
+    //for each 
     books.forEach(book => {
         console.log(books.length)
 
 
-        document.getElementById('error-message').style.display='none'
+        document.getElementById('error-message').style.display = 'none'//error
         document.getElementById('total-search').style.display = 'block'////total search result block display
 
 
         const totalSearchResult = document.getElementById('total-search');
-        totalSearchResult.innerText = books.length;
+        totalSearchResult.innerText = books.length;  //total search result
 
-
-
-        // totalSearchResultText=books.length;
-        // console.log(books.length[book])
-        //    console.log(book.title)
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `     
@@ -90,9 +72,6 @@ const displayLoad = books => {
     `;
         searchResult.appendChild(div);
 
-
-
-        //  return countBooks
     })
 
 }
