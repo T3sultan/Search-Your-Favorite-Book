@@ -1,6 +1,6 @@
 
 //error 
-document.getElementById('error-message').style.display = 'none'
+//document.getElementById('error-message').style.display = 'none'
 
 //button clicked function
 const searchBook = () => {
@@ -9,31 +9,55 @@ const searchBook = () => {
     const inputFieldText = inputField.value;
     // console.log(inputFieldText)
     inputField.value = '';
-    document.getElementById('error-message').style.display = 'block'
 
-
-
-    // fetch api
     const url = `https://openlibrary.org/search.json?q=${inputFieldText}`;
     fetch(url)
         .then(res => res.json())
         .then(data => displayLoad(data.docs))
-        .catch(error => displayError(error))
+
+
+
+
+    // document.getElementById('error-message').style.display = 'block'//error handling
+    // fetch api
+    // const url = `https://openlibrary.org/search.json?q=${inputFieldText}`;
+    // fetch(url)
+    //     .then(res => res.json())
+    //     .then(data => displayLoad(data.docs))
+    // .catch(error => displayError(error))
 }
 //error function
-const displayError = error => {
-    //console.log(error)
-    document.getElementById('error-message').style.display = 'none'
-}
+// const displayError = error => {
+//     //console.log(error)
+//     document.getElementById('error-message').style.display = 'none'
+// }
 
 
 //display show function
-const displayLoad = (books) => {
+const displayLoad = books => {
     console.log(books)
     const searchResult = document.getElementById('search-result');
+    //  document.getElementById('error-message').style.display = 'none'
+
+    //total result count
+    //   const totalSearchResult = document.getElementById('total-search')
+    //   totalSearchResult.innerText=books.length;
+
+
+
     searchResult.textContent = '';
-    // let countBooks=0;
+    let countBooks = 0;
     books.forEach(book => {
+        console.log(books.length)
+
+
+        const totalSearchResult = document.getElementById('total-search')
+        totalSearchResult.innerText = books.length;
+
+
+
+        // totalSearchResultText=books.length;
+        // console.log(books.length[book])
         //    console.log(book.title)
         const div = document.createElement('div');
         div.classList.add('col');
@@ -44,8 +68,8 @@ const displayLoad = (books) => {
             class="figure-img img-fluid" 
             src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" alt="...">
              <div class="card-body">
-                 <h4 class='text-waring'><span>Book Name:</span> ${book.title}</h4>
-                <h6 class="card-title">Author Name: ${book.author_name[0]}</h6>
+                 <h5 class='text-waring'> ${book.title}</h5>
+                <p class="card-title fs-6"">Author Name: ${book.author_name}</p>
                 <h6 class="card-title">Publisher: ${book.publisher}</h6>
                 <p class="card-text">First publish: ${book.first_publish_year}</p>
             
@@ -54,13 +78,12 @@ const displayLoad = (books) => {
 
        
     `;
-        // countBooks=countBooks+books[book];
+        searchResult.appendChild(div);
 
 
-        searchResult.appendChild(div)
 
-
+        //  return countBooks
     })
-    //    console.log(countBooks)
+
 }
 
