@@ -1,19 +1,29 @@
 
 //error 
-//document.getElementById('error-message').style.display = 'none'
+
+document.getElementById('error-message').style.display = 'none'
+document.getElementById('total-search').style.display = 'none' ////total search result none display
 
 //button clicked function
 const searchBook = () => {
     const inputField = document.getElementById('search-field');
+    //const errorDiv = document.getElementById('error-message');
     // console.log(inputField)
     const inputFieldText = inputField.value;
+
     // console.log(inputFieldText)
     inputField.value = '';
+
+    document.getElementById('error-message').style.display = 'block'
+
+    document.getElementById('total-search').style.display = 'none' //total search result none display
 
     const url = `https://openlibrary.org/search.json?q=${inputFieldText}`;
     fetch(url)
         .then(res => res.json())
         .then(data => displayLoad(data.docs))
+        .catch(error=>displayError(error))
+
 
 
 
@@ -27,23 +37,19 @@ const searchBook = () => {
     // .catch(error => displayError(error))
 }
 //error function
-// const displayError = error => {
-//     //console.log(error)
-//     document.getElementById('error-message').style.display = 'none'
-// }
+const displayError = error => {
+    console.log(error)
+    document.getElementById('error-message').style.display = 'block'
+}
 
 
 //display show function
 const displayLoad = books => {
     console.log(books)
     const searchResult = document.getElementById('search-result');
-    //  document.getElementById('error-message').style.display = 'none'
+    // document.getElementById('error-message').style.display = 'none'
 
-    //total result count
-    //   const totalSearchResult = document.getElementById('total-search')
-    //   totalSearchResult.innerText=books.length;
-
-
+    //document.getElementById('error-message').style.display = 'none'
 
     searchResult.textContent = '';
     let countBooks = 0;
@@ -51,7 +57,11 @@ const displayLoad = books => {
         console.log(books.length)
 
 
-        const totalSearchResult = document.getElementById('total-search')
+        document.getElementById('error-message').style.display='none'
+        document.getElementById('total-search').style.display = 'block'////total search result block display
+
+
+        const totalSearchResult = document.getElementById('total-search');
         totalSearchResult.innerText = books.length;
 
 

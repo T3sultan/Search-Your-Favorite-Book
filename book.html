@@ -24,21 +24,24 @@
     <div class="input-group mb-3 w-50 mx-auto">
         <input id="search-field" type="text" class="form-control border-1 border-secondary"
             placeholder="search your book" aria-label="Recipient's username" aria-describedby="button-addon2">
-        <button onclick="searchBook()" class="btn btn-outline-secondary bg-warning text-black buttonStyle" type="button"
+        <button onclick="searchBook()" class="btn btn-outline-secondary bg-info text-black buttonStyle" type="button"
             id="button-search">search</button>
     </div>
 
     <!-- error mesage modal -->
-    <!-- <div>
+    <div>
         <p id="error-message" class="text-danger text-center">No Result Found </p>
-    </div> -->
+    </div>
+    <!-- total search result -->
     <div class="bg-info text-center total">
-        <p class="text-black fs-4">Total search result <span class="text-danger fs-3" id="total-search">0</span> </p>
+        <p id="total-search" class="text-black fs-4">0 </p>
     </div>
 
-    
-     <!-- error message div -->
-     <div id="error-message"></div>
+
+    <!-- error message div -->
+    <!-- <div>
+        <p id="error-message">error</p>
+    </div> -->
 
     <!-- book search result -->
     <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4 ">
