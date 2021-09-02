@@ -1,4 +1,3 @@
-
 //error 
 document.getElementById('error-message').style.display = 'none'
 
@@ -67,7 +66,6 @@ const displayLoad = books => {
             
             </div>
     </div>
-
        
     `;
         searchResult.appendChild(div);
@@ -75,4 +73,3 @@ const displayLoad = books => {
     })
 
 }
-
